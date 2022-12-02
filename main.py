@@ -16,10 +16,13 @@ with col1:
     string = ""
     text = st.text_input('Слово', 'Hello world')
     if st.button('Зашифровать'):
-        rc5 = RC5(keys.encode(), bite, number)
-        encryptText = rc5.encrypt(text.encode('utf-8'))
-        string += "{}".format(b''.join(encryptText).hex())
-    st.markdown(f"Зашифрованное слово: {string}")
+        try:
+            rc5 = RC5(keys.encode(), bite, number)
+            encryptText = rc5.encrypt(text.encode('utf-8'))
+            string += "{}".format(b''.join(encryptText).hex())
+            st.markdown(f"Зашифрованное слово: {string}")
+        except ValueError:
+            st.markdown(f"Ошибка, попробуйте снова")
 
 
 with col2:
@@ -27,8 +30,12 @@ with col2:
     string = ""
     text = st.text_input('Зашифрованное слово', '')
     if st.button('Расшифровать'):
-        rc5 = RC5(keys.encode(), bite, number)
-        decryptText = rc5.decrypt(bytes.fromhex(text))
-        utf8String = str(b''.join(decryptText), 'utf-8')
-        string += "{}\n".format(utf8String)
-    st.markdown(f"Расшифрованное слово: {string}")
+        try:
+            rc5 = RC5(keys.encode(), bite, number)
+            decryptText = rc5.decrypt(bytes.fromhex(text))
+            utf8String = str(b''.join(decryptText), 'utf-8')
+            string += "{}\n".format(utf8String)
+            st.markdown(f"Расшифрованное слово: {string}")
+        except ValueError:
+            st.markdown(f"Ошибка, попробуйте снова")
+
