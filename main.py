@@ -1,5 +1,3 @@
-import time
-
 import streamlit as st
 from RC5 import RC5
 
@@ -16,7 +14,6 @@ with st.sidebar:
 
 col1, col2 = st.columns(2)
 
-
 with col1:
     st.subheader('Зашифровать слово')
     string = ""
@@ -29,7 +26,6 @@ with col1:
             st.markdown(f"Зашифрованное слово: {string}")
         except ValueError:
             st.markdown(f"Ошибка, попробуйте снова")
-
 
 with col2:
     st.subheader('Расшифровать слово')
