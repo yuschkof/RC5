@@ -1,11 +1,17 @@
+import time
+
 import streamlit as st
 from RC5 import RC5
 
 
 st.title('Шифр RC5')
-bite = st.radio("Длина слова в битах: ", (16, 32, 64))
-number = st.slider('Количество раундов:', 1, 255, 1)
-keys = st.text_input('Ключ', 'Key')
+st.write("Описание из Википедии [RC5](https://ru.wikipedia.org/wiki/RC5)")
+
+
+with st.sidebar:
+    bite = st.selectbox("Длина слова в битах: ", (16, 32, 64))
+    number = st.number_input('Количество раундов:', 1, 255)
+    keys = st.text_input('Ключ', 'Key')
 
 
 col1, col2 = st.columns(2)
